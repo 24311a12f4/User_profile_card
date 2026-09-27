@@ -1,121 +1,142 @@
 # User Profile Card Generator
 
-A responsive, premium full-stack web application designed to generate, validate, store, and display custom user profile cards. The application is built using a Python Flask API, an SQLite database, and a high-fidelity glassmorphic HTML/CSS/JS frontend dashboard.
+## 📌 Overview
+
+The User Profile Card Generator is a full-stack web application that allows users to enter their profile details such as name, bio, and profile image URL. The backend processes the submitted form data using HTTP POST requests and dynamically generates a user profile card on the frontend.
+
+---
 
 ## 🚀 Features
 
-- **Dynamic Profile Generation:** Submit details via the interactive form to instantly render a beautiful user profile card.
-- **Glassmorphic UI Design:** High-fidelity visuals utilizing blur filters, neon glow border outlines, and modern fonts (Outfit & Inter).
-- **SQLite Database Integration:** All generated profiles are persisted in a database with timestamps.
-- **Curated Avatar Picker:** Quickly select from beautiful preset Unsplash profile images to skip typing URLs.
-- **Saved Profiles Gallery:** Browse previously generated profile cards from the database directly on the dashboard.
-- **Preview Retrieval:** Click any profile in the history gallery to load it back into the main preview pane.
-- **Comprehensive Validations:** Front-end and back-end checking for required inputs, email patterns, and URL syntax.
-- **Responsive Layout:** Adaptive column-collapsing grid built using modern CSS layout systems (Grid and Flexbox).
+- User-friendly profile form
+- Accepts Name, Bio, and Profile Image URL
+- Handles HTTP POST requests
+- Dynamic profile card generation
+- Responsive user interface
+- Input validation
+- Clean and simple design
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+- HTML5
+- CSS3
+- JavaScript
+
+### Backend
+- Java
+- Spring Boot
+- Spring MVC
+- Thymeleaf
 
 ---
 
 ## 📂 Project Structure
 
-```text
-UserProfileCardGenerator/
-│
-├── backend/
-│   ├── app.py          # Main Flask Application & REST API Endpoints
-│   ├── models.py       # SQLite Database Setup & CRUD Functions
-│   └── database.db     # SQLite Database File (Auto-generated on startup)
-│
-├── frontend/
-│   ├── index.html      # Dashboard Structure & Form Layout
-│   ├── style.css       # Glassmorphism & Animations Stylesheet
-│   └── script.js       # Form Validation, AJAX Requests, & Card Rendering
-│
-└── README.md           # Project Documentation & Setup Guide
+```
+User-Profile-Card-Generator
+│── src
+│   ├── main
+│   │   ├── java
+│   │   ├── resources
+│   │   │   ├── static
+│   │   │   ├── templates
+│   │   │   └── application.properties
+│── pom.xml
+│── README.md
 ```
 
 ---
 
-## 🛠️ Prerequisites & Installation
+## ⚙️ Prerequisites
 
-### 1. Install Python
-Ensure that Python 3.7 or higher is installed on your system. You can check your version by running:
+- Java 21 or later
+- Maven
+- IntelliJ IDEA / Eclipse
+- Git
+
+---
+
+## ▶️ Running the Project
+
+1. Clone the repository
+
 ```bash
-python --version
+git clone https://github.com/your-username/User-Profile-Card-Generator.git
 ```
 
-### 2. Install Required Packages
-The Flask backend depends on `Flask` and `flask-cors`. Install them via pip:
+2. Navigate to the project
+
 ```bash
-pip install flask flask-cors
+cd User-Profile-Card-Generator
+```
+
+3. Build the project
+
+```bash
+mvn clean install
+```
+
+4. Run the application
+
+```bash
+mvn spring-boot:run
+```
+
+5. Open your browser
+
+```
+http://localhost:8080
 ```
 
 ---
 
-## 🏃 Run the Application
+## 📖 Usage
 
-### 1. Launch the Backend
-Navigate to the `backend/` folder and execute `app.py`. This will initialize the database and spin up the local development server:
-```bash
-python backend/app.py
-```
-Upon successful start, you will see output indicating that the server is running on:
-`http://127.0.0.1:5000`
-
-### 2. Open the Frontend
-Since the Flask app serves the static files from the `frontend/` directory, you can simply open:
-👉 **[http://127.0.0.1:5000](http://127.0.0.1:5000)** in your browser!
-
-*Alternatively, you can open `frontend/index.html` directly in your browser or run it using a standard static server (e.g. VS Code Live Server).*
+1. Enter your **Name**.
+2. Enter your **Bio**.
+3. Enter a valid **Profile Image URL**.
+4. Click **Generate Profile**.
+5. View the generated profile card instantly.
 
 ---
 
-## 📊 API Reference
+## 📸 Sample Output
 
-### 1. Create a Profile
-- **Endpoint:** `POST /generate-profile`
-- **Headers:** `Content-Type: application/json`
-- **Body Example:**
-  ```json
-  {
-    "name": "Alex Johnson",
-    "bio": "Passionate web developer and AI enthusiast.",
-    "image_url": "https://example.com/profile.jpg",
-    "email": "alex@example.com",
-    "location": "Chennai"
-  }
-  ```
-- **Response Example (201 Created):**
-  ```json
-  {
-    "success": true,
-    "profile": {
-      "id": 1,
-      "name": "Alex Johnson",
-      "bio": "Passionate web developer and AI enthusiast.",
-      "image_url": "https://example.com/profile.jpg",
-      "email": "alex@example.com",
-      "location": "Chennai",
-      "created_at": "2026-06-17 15:00:00"
-    }
-  }
-  ```
+```
+Name: John Doe
 
-### 2. Get All Profiles
-- **Endpoint:** `GET /profiles`
-- **Response Example (200 OK):**
-  ```json
-  {
-    "success": true,
-    "profiles": [
-      {
-        "id": 1,
-        "name": "Alex Johnson",
-        "bio": "Passionate web developer and AI enthusiast.",
-        "image_url": "https://example.com/profile.jpg",
-        "email": "alex@example.com",
-        "location": "Chennai",
-        "created_at": "2026-06-17 15:00:00"
-      }
-    ]
-  }
-  ```
+Bio:
+Java Full Stack Developer
+
+Profile Image:
+https://example.com/profile.jpg
+```
+
+The application displays a professional profile card containing the entered information.
+
+---
+
+## 🎯 Future Enhancements
+
+- Upload profile image from local device
+- Edit existing profile
+- Save profiles in a database
+- User authentication
+- Dark mode
+- Social media links
+- Download profile card as PDF
+
+---
+
+## 👨‍💻 Author
+
+**Keerthi Chaithanya Rapolu**
+
+---
+
+## 📄 License
+
+This project is developed for learning and internship purposes.
