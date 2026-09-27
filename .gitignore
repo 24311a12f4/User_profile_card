@@ -1,0 +1,19 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Databases
+backend/database.db
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Editor configurations
+.vscode/
+.idea/
+.DS_Store

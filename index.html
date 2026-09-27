@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Card Generator - Dashboard</title>
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome Icons for modern look -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Notification Toast Container -->
+    <div class="notification-container" id="toastContainer"></div>
+
+    <div class="app-container">
+        <!-- Application Header -->
+        <header>
+            <h1>User Profile Card Generator</h1>
+            <p>Generate, save, and browse professional digital business cards instantly</p>
+        </header>
+
+        <!-- Main Dashboard Section -->
+        <main class="dashboard-grid">
+            
+            <!-- Left Side: Profile Form -->
+            <section class="glass-panel">
+                <h2 class="form-title">
+                    <i class="fa-solid fa-address-card"></i> Profile Details
+                </h2>
+                
+                <form id="profileForm" novalidate>
+                    <!-- Name Input -->
+                    <div class="form-group">
+                        <label for="name">Full Name <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" id="name" class="form-control" placeholder="e.g. Alex Johnson" required>
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                    </div>
+
+                    <!-- Bio Input -->
+                    <div class="form-group">
+                        <label for="bio">Bio / About Me <span class="required">*</span></label>
+                        <textarea id="bio" class="form-control" placeholder="Tell us about yourself, your skills, or your passions..." required></textarea>
+                    </div>
+
+                    <!-- Profile Image URL Input -->
+                    <div class="form-group">
+                        <label for="imageUrl">Profile Image URL <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="url" id="imageUrl" class="form-control" placeholder="e.g. https://images.unsplash.com/..." required>
+                            <i class="fa-solid fa-image"></i>
+                        </div>
+                        
+                        <!-- Quick Select Avatars -->
+                        <div class="avatar-selector">
+                            <span class="avatar-selector-label">Or choose a pre-configured avatar:</span>
+                            <div class="avatar-options">
+                                <div class="avatar-option" data-url="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80">
+                                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&q=80" alt="Avatar Male 1">
+                                </div>
+                                <div class="avatar-option" data-url="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80">
+                                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80" alt="Avatar Female 1">
+                                </div>
+                                <div class="avatar-option" data-url="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=200&q=80">
+                                    <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=80&q=80" alt="Avatar Male 2">
+                                </div>
+                                <div class="avatar-option" data-url="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=80&q=80" alt="Avatar Female 2">
+                                </div>
+                                <div class="avatar-option" data-url="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=200&q=80">
+                                    <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=80&q=80" alt="Avatar Tech">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email Input (Optional) -->
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="text-muted">(Optional)</span></label>
+                        <div class="input-wrapper">
+                            <input type="email" id="email" class="form-control" placeholder="e.g. alex@example.com">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                    </div>
+
+                    <!-- Location Input (Optional) -->
+                    <div class="form-group">
+                        <label for="location">Location <span class="text-muted">(Optional)</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" id="location" class="form-control" placeholder="e.g. Chennai, India">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="submitBtn" class="btn-submit">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Profile Card
+                    </button>
+                </form>
+            </section>
+
+            <!-- Right Side: Preview Panel -->
+            <section class="glass-panel preview-container">
+                <!-- Loading Overlay -->
+                <div class="loading-overlay" id="loadingOverlay">
+                    <div class="spinner"></div>
+                    <div class="loading-text">Generating Card...</div>
+                </div>
+
+                <!-- Preview Placeholder State -->
+                <div class="preview-placeholder" id="previewPlaceholder">
+                    <i class="fa-regular fa-id-card"></i>
+                    <h3>Real-time Preview</h3>
+                    <p>Enter your profile details on the left to generate your card instantly.</p>
+                </div>
+
+                <!-- Active Rendered Profile Card -->
+                <div id="activeCardContainer" style="display: none; width: 100%;">
+                    <!-- Rendered dynamically in script.js -->
+                </div>
+            </section>
+        </main>
+
+        <!-- History Dashboard Section -->
+        <section class="glass-panel history-section">
+            <div class="history-header">
+                <h2>Saved Profiles Gallery</h2>
+                <p id="savedCount">0 profiles saved</p>
+            </div>
+            
+            <!-- Cards list -->
+            <div class="history-grid" id="historyGrid">
+                <!-- Populated dynamically via GET /profiles -->
+                <div class="no-history">
+                    <i class="fa-regular fa-folder-open"></i>
+                    <p>No profile cards created yet. Fill the form to get started!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 User Profile Card Generator. Built with Python Flask &amp; SQLite. | <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"><i class="fa-solid fa-arrow-up"></i> Back to top</a></p>
+        </footer>
+    </div>
+
+    <!-- JavaScript logic -->
+    <script src="script.js"></script>
+</body>
+</html>
